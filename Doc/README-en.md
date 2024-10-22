@@ -1,7 +1,7 @@
 # bullets-defender
 My micro-RnD of Bullets-Defender (Fast and ultra dynamic action game when you need to destroy every squares and protect yours))
 
-## Bullets Defender Explanation
+##Bullets Defender - Explanation
 Use your slingshot to burst the maximum number of blocks that want to destroy yours! The more you pull on the rope, the higher the projectile will go. The game ends if you no longer have a small white square! So try to make the best score :) 
 
 - This game is played only with the mouse.
@@ -40,10 +40,3 @@ I didn't have much time to devote to it, you know I'm still working on my big pr
 
 ## References / Useful links
 - https://hydrogene.itch.io/bullets-defender Original Windows desktop version of Bullets Defender game
-
-
-## ..
-AS IS. No support. RnD only / DIY
-
-## .
-[m][e] 2024

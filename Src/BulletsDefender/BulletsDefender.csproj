@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\Admin\Desktop\RE\BulletsDefender\Bullets Defender.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{811515DF-582E-4D04-A18E-9B4641E5FC37}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>BulletsDefender</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.8.0.1641, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\lib\net452\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.0.1\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D11.4.0.1\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.0.1\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.0.1\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.MediaFoundation.4.0.1\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XAudio2.4.0.1\lib\net45\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.4.0.1\lib\net45\SharpDX.XInput.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HydroGene\TiledSharp\ImageLayer.cs" />
+    <Compile Include="HydroGene\TiledSharp\Layer.cs" />
+    <Compile Include="HydroGene\TiledSharp\1Layer.cs" />
+    <Compile Include="HydroGene\TiledSharp\Map.cs" />
+    <Compile Include="HydroGene\TiledSharp\OrientationType.cs" />
+    <Compile Include="HydroGene\TiledSharp\StaggerAxisType.cs" />
+    <Compile Include="HydroGene\TiledSharp\StaggerIndexType.cs" />
+    <Compile Include="HydroGene\TiledSharp\RenderOrderType.cs" />
+    <Compile Include="HydroGene\TiledSharp\TmxObjectGroup.cs" />
+    <Compile Include="HydroGene\TiledSharp\TmxObject.cs" />
+    <Compile Include="HydroGene\TiledSharp\TmxObjectPoint.cs" />
+    <Compile Include="HydroGene\TiledSharp\TmxObjectType.cs" />
+    <Compile Include="HydroGene\TiledSharp\DrawOrderType.cs" />
+    <Compile Include="HydroGene\TiledSharp\TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\ITmxElement.cs" />
+    <Compile Include="HydroGene\TiledSharp\1TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\2TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\3TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\4TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\5TiledCore.cs" />
+    <Compile Include="HydroGene\TiledSharp\Tileset.cs" />
+    <Compile Include="HydroGene\TiledSharp\1Tileset.cs" />
+    <Compile Include="HydroGene\TiledSharp\2Tileset.cs" />
+    <Compile Include="HydroGene\TiledSharp\3Tileset.cs" />
+    <Compile Include="HydroGene\TiledSharp\4Tileset.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\BlockState.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\DeflateFlavor.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\Deflate.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\DeflateStream.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\GZipStream.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\Inflate.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\1Inflate.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\2Inflate.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\3Inflate.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\InfTree.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\WorkItem.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ParallelDeflateOutputStream.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\Tree.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\FlushType.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\CompressionLevel.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\CompressionStrategy.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\CompressionMode.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\Zlib.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\1Zlib.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\2Zlib.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\3Zlib.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\4Zlib.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ZlibStreamFlavor.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ZlibBaseStream.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ZlibCodec.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ZlibConstants.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\ZlibStream.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\CRC32.cs" />
+    <Compile Include="HydroGene\TiledSharp\zlib\CrcCalculatorStream.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Bullet.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="HydroGene\AssetManager.cs" />
+    <Compile Include="Scenes\FollowingType.cs" />
+    <Compile Include="Scenes\Axe.cs" />
+    <Compile Include="HydroGene\Camera.cs" />
+    <Compile Include="HydroGene\Dialogue.cs" />
+    <Compile Include="HydroGene\effects\InvertColor.cs" />
+    <Compile Include="HydroGene\effects\PostProcessingEffect.cs" />
+    <Compile Include="Scenes\OnClick.cs" />
+    <Compile Include="HydroGene\gui\Button.cs" />
+    <Compile Include="Scenes\IActor.cs" />
+    <Compile Include="HydroGene\inputs\GamePadInput.cs" />
+    <Compile Include="HydroGene\inputs\KeyboardInput.cs" />
+    <Compile Include="HydroGene\inputs\MouseInput.cs" />
+    <Compile Include="Scenes\IParticle.cs" />
+    <Compile Include="HydroGene\Screen.cs" />
+    <Compile Include="HydroGene\Sound.cs" />
+    <Compile Include="HydroGene\sprites\AnimatedSprite.cs" />
+    <Compile Include="HydroGene\sprites\Flip.cs" />
+    <Compile Include="HydroGene\sprites\Sprite.cs" />
+    <Compile Include="HydroGene\states\GameState.cs" />
+    <Compile Include="HydroGene\states\Scene.cs" />
+    <Compile Include="HydroGene\Text.cs" />
+    <Compile Include="HydroGene\utils\Primitive.cs" />
+    <Compile Include="HydroGene\utils\RNG.cs" />
+    <Compile Include="Scenes\OnComplete.cs" />
+    <Compile Include="HydroGene\utils\Timer.cs" />
+    <Compile Include="Scenes\Ease.cs" />
+    <Compile Include="HydroGene\utils\Tween.cs" />
+    <Compile Include="HydroGene\utils\Easing.cs" />
+    <Compile Include="HydroGene\utils\Tweening.cs" />
+    <Compile Include="HydroGene\utils\Util.cs" />
+    <Compile Include="MainGame.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Scenes\SceneGame.cs" />
+    <Compile Include="Scenes\SceneMenu.cs" />
+    <Compile Include="SplashParticle.cs" />
+    <Compile Include="HydroGene\utils\TileMap.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Content Include="Content\Effects\BlackAndWhite.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\Font28.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Musics\Bullet Defender - In Game.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Musics\Bullet Defender - In Game.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Musics\Bullet Defender - Menu.wma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Musics\Bullet Defender - Menu.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sfx\DestructBlock.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sfx\Shoot.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sfx\TouchBlock.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sfx\TouchProtector.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sfx\TouchWall.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets" Condition="Exists('..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets'))" />
+  </Target>
+</Project>
