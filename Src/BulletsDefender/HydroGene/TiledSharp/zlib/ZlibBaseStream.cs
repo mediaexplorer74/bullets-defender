@@ -203,7 +203,7 @@ namespace Ionic.Zlib
             this._z = (ZlibCodec)null;
         }
 
-        public override void Close()
+        public /*override*/ void Close()
         {
             if (this._stream == null)
                 return;
@@ -214,8 +214,15 @@ namespace Ionic.Zlib
             finally
             {
                 this.end();
+
                 if (!this._leaveOpen)
-                    this._stream.Close();
+                {
+                    //RnD
+                    //this._stream.Close();
+                    this._stream.Flush();
+                    this._stream.Dispose();
+                }
+
                 this._stream = (Stream)null;
             }
         }

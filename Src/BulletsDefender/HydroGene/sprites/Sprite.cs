@@ -148,7 +148,7 @@ namespace HydroGene
 
         public virtual void Update(GameTime gameTime)
         {
-            if (MainGame.IS_PAUSED || !this.IsActive)
+            if (Game1.IS_PAUSED || !this.IsActive)
                 return;
             this.Move(this.Velocity.X, this.Velocity.Y);
             this.BoundingBox = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)((double)this.Texture.Width * (double)this.Scale.X), (int)((double)this.Texture.Height * (double)this.Scale.Y));

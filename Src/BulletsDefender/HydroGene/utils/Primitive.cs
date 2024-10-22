@@ -26,7 +26,7 @@ namespace HydroGene
 
         public static Texture2D CreatePixel()
         {
-            Primitive.pixel = new Texture2D(((GraphicsResource)MainGame.Instance.spriteBatch).GraphicsDevice, 1, 1, false, (SurfaceFormat)0);
+            Primitive.pixel = new Texture2D(((GraphicsResource)Game1.Instance.spriteBatch).GraphicsDevice, 1, 1, false, (SurfaceFormat)0);
             Primitive.pixel.SetData<Color>(new Color[1]
             {
         Color.White

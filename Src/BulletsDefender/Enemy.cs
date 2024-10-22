@@ -150,7 +150,7 @@ namespace HydroGene
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            if (this.HP <= (byte)0 || MainGame.Instance.Screen.Effect != null)
+            if (this.HP <= (byte)0 || Game1.Instance.Screen.Effect != null)
                 return;
             this.TextHP.Draw(spriteBatch);
         }

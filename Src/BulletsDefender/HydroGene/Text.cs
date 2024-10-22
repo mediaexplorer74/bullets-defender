@@ -162,7 +162,7 @@ namespace HydroGene
                             this.CurrentString += "\n";
                         this.CurrentString += this.FullString[this.currentString_position].ToString();
                         if (this.FullString[this.currentString_position] != ' ' && this.Sound != null)
-                            this.Sound.Play(MainGame.VOLUME_SFX, this.TextSoundPitch, 0.0f);
+                            this.Sound.Play(Game1.VOLUME_SFX, this.TextSoundPitch, 0.0f);
                         ++this.currentString_position;
                         this.currentTimer = this.SpeedApparition;
                     }

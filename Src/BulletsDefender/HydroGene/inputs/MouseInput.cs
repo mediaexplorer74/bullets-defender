@@ -55,7 +55,7 @@ namespace HydroGene
             double x = (double)state.X;
             state = Mouse.GetState();
             double y = (double)state.Y;
-            return Vector2.Divide(new Vector2((float)x, (float)y), MainGame.Instance.Screen.Scale);
+            return Vector2.Divide(new Vector2((float)x, (float)y), Game1.Instance.Screen.Scale);
         }
     }
 }

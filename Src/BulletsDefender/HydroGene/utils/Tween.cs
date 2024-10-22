@@ -81,7 +81,7 @@ namespace HydroGene
         {
             if (this.Time < this.Duration)
             {
-                if (!this.StopWhenPause || !MainGame.IS_PAUSED && MainGame.Instance.Screen.Effect == null)
+                if (!this.StopWhenPause || !Game1.IS_PAUSED && Game1.Instance.Screen.Effect == null)
                 {
                     this.Time += gameTime.ElapsedGameTime.TotalSeconds;
                     this.IsFinished = false;

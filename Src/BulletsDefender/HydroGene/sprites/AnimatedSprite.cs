@@ -138,7 +138,7 @@ namespace HydroGene
 
         public override void Update(GameTime gameTime)
         {
-            if (MainGame.IS_PAUSED || !this.IsActive)
+            if (Game1.IS_PAUSED || !this.IsActive)
                 return;
             base.Update(gameTime);
             if (this.CurrentAnimationName != null)

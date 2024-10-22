@@ -50,7 +50,7 @@ namespace HydroGene
             MediaPlayer.Stop();
             MediaPlayer.Play(AssetManager.Song_BulletDefenderInGame);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = MainGame.VOLUME_MUSIC;
+            MediaPlayer.Volume = Game1.VOLUME_MUSIC;
 
             this.LeftPart.Location = new Point((int)((double)Camera.Position.X
                 + (double)Camera.VisibleArea.Width * 0.40000000596046448),
@@ -81,7 +81,7 @@ namespace HydroGene
             this.listActors.Add((IActor)this.TextGameOver);
             this.TimerGenerateEnemy1.OnComplete = (OnComplete)(() =>
             {
-                if (!MainGame.Instance.IsActive)
+                if (!Game1.Instance.IsActive)
                     return;
                 byte max1 = 2;
                 int num = this.Score * 50;
@@ -110,9 +110,9 @@ namespace HydroGene
             });
             Camera.OnCompleteFade = (OnComplete)(() =>
             {
-                MainGame.Instance.Screen.Effect = (Effect)null;
-                if (this.Score * 50 > MainGame.BEST_SCORE)
-                    MainGame.BEST_SCORE = this.Score * 50;
+                Game1.Instance.Screen.Effect = (Effect)null;
+                if (this.Score * 50 > Game1.BEST_SCORE)
+                    Game1.BEST_SCORE = this.Score * 50;
                 this.mainGame.gameState.ChangeScene(GameState.SceneType.Menu);
             });
             this.Protectors = new Sprite[8];
@@ -152,9 +152,9 @@ namespace HydroGene
 
         public override void Update(GameTime gameTime)
         {
-            if (MainGame.Instance.Screen.Effect == null)
+            if (Game1.Instance.Screen.Effect == null)
             {
-                if (MainGame.Instance.IsActive)
+                if (Game1.Instance.IsActive)
                     this.TimerGenerateEnemy1.Update(gameTime);
                 if ((double)this.TextIncrement.Alpha > 0.0)
                 {
@@ -170,8 +170,8 @@ namespace HydroGene
                 if ((double)this.TextScore.Scale.X <= 1.0)
                     this.TextScore.Scale = Vector2.One;
                 if (KBInput.JustPressed((Keys)112))
-                    MainGame.IS_DEBUG = !MainGame.IS_DEBUG;
-                this.TextAngle.IsActive = MainGame.IS_DEBUG;
+                    Game1.IS_DEBUG = !Game1.IS_DEBUG;
+                this.TextAngle.IsActive = Game1.IS_DEBUG;
                 this.endPosition = MouseInput.LeftClicked() ? MouseInput.GetPosition() : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2), (float)(this.LeftPart.Y + 20));
                 this.MiddlePoint = new Vector2((float)(((double)this.EndPointOppositeLeftPart.X + (double)this.EndPointOppositeRightPart.X) / 2.0), this.EndPointOppositeRightPart.Y);
                 if (MouseInput.LeftClicked())
@@ -208,7 +208,7 @@ namespace HydroGene
                 if (MouseInput.JustLeftClicked())
                 {
                     this.ListBullets.Add(new Bullet());
-                    AssetManager.Sound_Shoot.SoundEffect.Play(MainGame.VOLUME_SFX - 0.1f, 0.98f, 0.0f);
+                    AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX - 0.1f, 0.98f, 0.0f);
                     this.captureFirstClickPosition = MouseInput.GetPosition();
                 }
                 if (this.ListBullets.Count > 0)
@@ -250,10 +250,10 @@ namespace HydroGene
                                     this.RefreshScore(listEnemy.HP_MAX, listEnemy.Position);
                                     this.GenerateSplashParticle((byte)12, listEnemy.Position, listEnemy.Color, true);
                                     listEnemy.ToRemove = true;
-                                    AssetManager.Sound_Destructblock.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                                    AssetManager.Sound_Destructblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                                 }
                                 else
-                                    AssetManager.Sound_Touchblock.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                                    AssetManager.Sound_Touchblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                                 listBullet.ToRemove = true;
                             }
                         }
@@ -266,7 +266,7 @@ namespace HydroGene
                             listEnemy.ToRemove = true;
                             protector.Alpha = 0.0f;
                             Camera.Shake(1f, 0.14f, Axe.ANGLE);
-                            AssetManager.Sound_Touchprotector.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                            AssetManager.Sound_Touchprotector.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                         }
                     }
                     listEnemy.Update(gameTime);
@@ -306,11 +306,11 @@ namespace HydroGene
                     protector.Velocity.X = Math.Abs(protector.Velocity.X);
                 protector.BoundingBox = new Rectangle((int)((double)protector.Position.X - (double)protector.Origin.X * (double)protector.Scale.X), (int)((double)protector.Position.Y - (double)protector.Origin.Y * (double)protector.Scale.Y), (int)protector.Scale.X, (int)protector.Scale.Y);
             }
-            if (MainGame.Instance.Screen.Effect != null || ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(item => (double)item.Alpha > 0.0)) > 0)
+            if (Game1.Instance.Screen.Effect != null || ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(item => (double)item.Alpha > 0.0)) > 0)
                 return;
             Camera.Flash(0.5f, Color.White);
             Camera.Shake(16f, 0.5f);
-            MainGame.Instance.Screen.Effect = AssetManager.EffectBlackandwhite;
+            Game1.Instance.Screen.Effect = AssetManager.EffectBlackandwhite;
         }
 
         public override void Draw(GameTime gameTime)
@@ -329,7 +329,7 @@ namespace HydroGene
             Primitive.DrawLine(spriteBatch2, vector2_2, endPoint2, blue2, 6);
             Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointLeftPart, this.endPosition, Color.White, 4);
             Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointRightPart, this.endPosition, Color.White, 4);
-            if (MainGame.IS_DEBUG)
+            if (Game1.IS_DEBUG)
             {
                 Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, this.mainGame.spriteBatch,
                     this.captureFirstClickPosition, new Vector2(12f), Color.Red);

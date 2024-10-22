@@ -13,12 +13,12 @@ namespace HydroGene
 {
     public abstract class Scene
     {
-        protected MainGame mainGame;
+        protected Game1 mainGame;
         public List<IActor> listActors;
 
         public Scene()
         {
-            this.mainGame = MainGame.Instance;
+            this.mainGame = Game1.Instance;
             this.listActors = new List<IActor>();
         }
 
@@ -38,7 +38,7 @@ namespace HydroGene
         {
             foreach (IActor listActor in this.listActors)
             {
-                if (!MainGame.IS_PAUSED && listActor.IsActive)
+                if (!Game1.IS_PAUSED && listActor.IsActive)
                     listActor.Update(gameTime);
             }
             Tweening.Update(gameTime);

@@ -119,12 +119,16 @@ namespace Ionic.Crc
 
         void IDisposable.Dispose() => this.Close();
 
-        public override void Close()
+        public /*override*/ void Close()
         {
-            base.Close();
+            //RnD
+            //base.Close();
+            base.Dispose();
             if (this._leaveOpen)
                 return;
-            this._innerStream.Close();
+            //this._innerStream.Close();
+            this._innerStream.Flush();
+            this._innerStream.Dispose();
         }
     }
 }

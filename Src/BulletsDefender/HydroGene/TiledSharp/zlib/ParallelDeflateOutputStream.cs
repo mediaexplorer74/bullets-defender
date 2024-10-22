@@ -165,8 +165,9 @@ namespace Ionic.Zlib
                 state.inputBytesAvailable += count1;
                 if (state.inputBytesAvailable == state.buffer.Length)
                 {
-                    if (!ThreadPool.QueueUserWorkItem(new WaitCallback(this._DeflateOne), (object)state))
-                        throw new Exception("Cannot enqueue workitem");
+                    //RnD
+                    //if (!ThreadPool.QueueUserWorkItem(new WaitCallback(this._DeflateOne), (object)state))
+                    //    throw new Exception("Cannot enqueue workitem");
                     this._currentlyFilling = -1;
                 }
                 else
@@ -221,6 +222,7 @@ namespace Ionic.Zlib
                 this.EmitPendingBuffers(false, false);
         }
 
+
         public override void Flush()
         {
             if (this._pendingException != null)
@@ -235,7 +237,7 @@ namespace Ionic.Zlib
             this._Flush(false);
         }
 
-        public override void Close()
+        public /*override*/ void Close()
         {
             if (this._pendingException != null)
             {
@@ -247,14 +249,19 @@ namespace Ionic.Zlib
             if (this._handlingException || this._isClosed)
                 return;
             this._Flush(true);
+
             if (!this._leaveOpen)
-                this._outStream.Close();
+            {
+                //this._outStream.Close();
+            }
+            
             this._isClosed = true;
         }
+        
 
         public new void Dispose()
         {
-            this.Close();
+            //this.Close();
             this._pool = (List<WorkItem>)null;
             this.Dispose(true);
         }

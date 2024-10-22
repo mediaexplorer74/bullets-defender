@@ -19,7 +19,8 @@ namespace TiledSharp
 
         protected XDocument ReadXml(string filepath)
         {
-            Assembly entryAssembly = Assembly.GetEntryAssembly();
+            //RnD
+            Assembly entryAssembly = null;//Assembly.GetEntryAssembly();
             string[] array = new string[0];
             if (entryAssembly != (Assembly)null)
                 array = entryAssembly.GetManifestResourceNames();

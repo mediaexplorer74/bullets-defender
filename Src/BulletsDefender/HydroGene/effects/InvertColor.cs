@@ -33,7 +33,7 @@ namespace HydroGene
 
         public override Texture2D Apply(Texture2D input, GameTime gameTime)
         {
-            this.graphicsDevice.SetRenderTarget(MainGame.Instance.Screen.RenderTarget);
+            this.graphicsDevice.SetRenderTarget(Game1.Instance.Screen.RenderTarget);
             this.graphicsDevice.Clear(Color.White);
             this.spriteBatch.Begin((SpriteSortMode)0, this.blendState, (SamplerState)null,
                 (DepthStencilState)null, (RasterizerState)null, (Effect)null, new Matrix?());

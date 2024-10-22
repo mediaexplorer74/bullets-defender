@@ -83,7 +83,7 @@ namespace HydroGene
                         this.Velocity.Y = Math.Abs(this.Velocity.Y);
                         this.IsFreezing = true;
                         this.CaptureInstantVelocity = this.Velocity;
-                        AssetManager.Sound_Touchwall.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                        AssetManager.Sound_Touchwall.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                     }
                     if ((double)this.Position.X < (double)Camera.Position.X)
                     {
@@ -92,7 +92,7 @@ namespace HydroGene
                         this.Velocity.X = Math.Abs(this.Velocity.X);
                         this.IsFreezing = true;
                         this.CaptureInstantVelocity = this.Velocity;
-                        AssetManager.Sound_Touchwall.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                        AssetManager.Sound_Touchwall.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                     }
                     if ((double)this.Position.X > (double)Camera.VisibleArea.Width)
                     {
@@ -101,7 +101,7 @@ namespace HydroGene
                         this.Velocity.X = -Math.Abs(this.Velocity.X);
                         this.IsFreezing = true;
                         this.CaptureInstantVelocity = this.Velocity;
-                        AssetManager.Sound_Touchwall.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                        AssetManager.Sound_Touchwall.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                     }
                 }
                 if ((double)this.Position.Y > (double)(2 * Camera.VisibleArea.Height) + (double)this.Scale.Y)

@@ -15,7 +15,7 @@ namespace HydroGene.utils
 {
     internal class TileMap : IActor
     {
-        private MainGame mainGame;
+        private Game1 mainGame;
         private TmxMap Map;
         private Texture2D Tileset;
         private bool HAS_SOLID_LAYER;
@@ -65,7 +65,7 @@ namespace HydroGene.utils
 
         public TileMap(string mapPath, Texture2D pTileset)
         {
-            this.mainGame = MainGame.Instance;
+            this.mainGame = Game1.Instance;
             this.Flip = new Flip();
             this.flipEffect = (SpriteEffects)0;
             this.Map = new TmxMap(mapPath);

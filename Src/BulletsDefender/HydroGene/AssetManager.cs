@@ -33,7 +33,7 @@ namespace HydroGene
 
         private static T Load<T>(string contentName)
         {
-            return MainGame.Instance.Content.Load<T>(contentName);
+            return Game1.Instance.Content.Load<T>(contentName);
         }
 
         public static void Load()
@@ -42,11 +42,11 @@ namespace HydroGene
             AssetManager.FontFont28 = AssetManager.Load<SpriteFont>("Fonts/Font28");
             AssetManager.Song_BulletDefenderInGame = AssetManager.Load<Song>("Musics/Bullet Defender - In Game");
             AssetManager.Song_BulletDefenderMenu = AssetManager.Load<Song>("Musics/Bullet Defender - Menu");
-            AssetManager.Sound_Destructblock = new Sound(AssetManager.Load<SoundEffect>("Sfx/DestructBlock"), MainGame.VOLUME_SFX);
-            AssetManager.Sound_Shoot = new Sound(AssetManager.Load<SoundEffect>("Sfx/Shoot"), MainGame.VOLUME_SFX);
-            AssetManager.Sound_Touchblock = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchBlock"), MainGame.VOLUME_SFX);
-            AssetManager.Sound_Touchprotector = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchProtector"), MainGame.VOLUME_SFX);
-            AssetManager.Sound_Touchwall = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchWall"), MainGame.VOLUME_SFX);
+            AssetManager.Sound_Destructblock = new Sound(AssetManager.Load<SoundEffect>("Sfx/DestructBlock"), Game1.VOLUME_SFX);
+            AssetManager.Sound_Shoot = new Sound(AssetManager.Load<SoundEffect>("Sfx/Shoot"), Game1.VOLUME_SFX);
+            AssetManager.Sound_Touchblock = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchBlock"), Game1.VOLUME_SFX);
+            AssetManager.Sound_Touchprotector = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchProtector"), Game1.VOLUME_SFX);
+            AssetManager.Sound_Touchwall = new Sound(AssetManager.Load<SoundEffect>("Sfx/TouchWall"), Game1.VOLUME_SFX);
         }
     }
 }

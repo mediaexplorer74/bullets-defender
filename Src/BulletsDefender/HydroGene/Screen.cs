@@ -27,7 +27,7 @@ namespace HydroGene
         private Rectangle screenRect;
         private int width;
         private int height;
-        private MainGame mainGame;
+        private Game1 mainGame;
 
         public GraphicsDeviceManager Graphics => this.mainGame?.graphics;
 
@@ -35,7 +35,7 @@ namespace HydroGene
 
         public RenderTarget2D RenderTarget { get; private set; }
 
-        public Screen(MainGame game, int width, int height, float scale)
+        public Screen(Game1 game, int width, int height, float scale)
         {
             this.mainGame = game;
             this.screenRect = this.DrawRect = new Rectangle(0, 0, width, height);

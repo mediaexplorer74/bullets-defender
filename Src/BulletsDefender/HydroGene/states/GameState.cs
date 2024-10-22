@@ -9,12 +9,12 @@ namespace HydroGene
 {
     public class GameState
     {
-        protected MainGame mainGame;
+        protected Game1 mainGame;
         public GameState.SceneType CurrentSceneType;
 
         public Scene currentScene { get; set; }
 
-        public GameState(MainGame mainGame) => this.mainGame = mainGame;
+        public GameState(Game1 mainGame) => this.mainGame = mainGame;
 
         public void ChangeScene(GameState.SceneType sceneType)
         {

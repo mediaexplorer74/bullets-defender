@@ -18,7 +18,7 @@ namespace HydroGene
         public static IActor FollowingActor = (IActor)null;
         public static float FollowLerp = 1f;
         public static FollowingType FollowingType = FollowingType.LOCKON;
-        public static Rectangle VisibleArea = new Rectangle(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
+        public static Rectangle VisibleArea = new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT);
         private static Texture2D CameraDebugArea;
         private static Vector2 BaseShakePosition;
         private static Vector2 OldShakeIntensity;
@@ -103,8 +103,8 @@ namespace HydroGene
                     break;
                 case FollowingType.ALWAYS_ON_RIGHT:
                     Camera.Position = new Vector2(actor.Position.X
-                        - ((float)MainGame.WIDTH - (float)actor.Width * actor.Scale.X),
-                        actor.Position.Y - ((float)MainGame.HEIGHT - (float)actor.Height * actor.Scale.Y));
+                        - ((float)Game1.WIDTH - (float)actor.Width * actor.Scale.X),
+                        actor.Position.Y - ((float)Game1.HEIGHT - (float)actor.Height * actor.Scale.Y));
                     break;
             }
 
@@ -153,7 +153,7 @@ namespace HydroGene
             Camera.currentFlashDuration = duration;
             Camera.alphaFlash = 1f;
             Camera.flashColor = color;
-            Camera.flashRectangle = new Texture2D(MainGame.Instance.GraphicsDevice, 1, 1);
+            Camera.flashRectangle = new Texture2D(Game1.Instance.GraphicsDevice, 1, 1);
             Camera.flashRectangle.SetData<Color>(new Color[1]
             {
         Camera.flashColor
@@ -170,7 +170,7 @@ namespace HydroGene
             Camera.currentFadeDuration = duration;
             Camera.alphaFade = 0.0f;
             Camera.fadeColor = color;
-            Camera.fadeRectangle = new Texture2D(MainGame.Instance.GraphicsDevice, 1, 1);
+            Camera.fadeRectangle = new Texture2D(Game1.Instance.GraphicsDevice, 1, 1);
             Camera.fadeRectangle.SetData<Color>(new Color[1]
             {
         Camera.fadeColor
@@ -182,7 +182,7 @@ namespace HydroGene
         {
             if (!Camera.DEBUG_IS_ON)
                 return;
-            Camera.CameraDebugArea = new Texture2D(MainGame.Instance.GraphicsDevice, 1, 1);
+            Camera.CameraDebugArea = new Texture2D(Game1.Instance.GraphicsDevice, 1, 1);
             Camera.CameraDebugArea.SetData<Color>(new Color[1]
             {
         Color.White
@@ -213,7 +213,7 @@ namespace HydroGene
             if (Camera.DEBUG_IS_ON)
                 Camera.Debug();
             TimeSpan elapsedGameTime;
-            if (Camera.canShake && !MainGame.IS_PAUSED)
+            if (Camera.canShake && !Game1.IS_PAUSED)
             {
                 double currentShakeDuration = (double)Camera.currentShakeDuration;
                 elapsedGameTime = gameTime.ElapsedGameTime;
@@ -302,8 +302,8 @@ namespace HydroGene
                 Camera.Origin = Vector2.Zero;
             Camera.VisibleArea.X = (int)Camera.Position.X;
             Camera.VisibleArea.Y = (int)Camera.Position.Y;
-            Camera.VisibleArea.Width = (int)((double)MainGame.WIDTH / (double)Camera.Zoom);
-            Camera.VisibleArea.Height = (int)((double)MainGame.HEIGHT / (double)Camera.Zoom);
+            Camera.VisibleArea.Width = (int)((double)Game1.WIDTH / (double)Camera.Zoom);
+            Camera.VisibleArea.Height = (int)((double)Game1.HEIGHT / (double)Camera.Zoom);
             if (!Camera.AUTHORIZED_FORCED_ZOOM)
                 return;
             if (KBInput.JustPressed((Keys)33))
@@ -316,16 +316,16 @@ namespace HydroGene
         public static void Draw()
         {
             if (Camera.DEBUG_IS_ON)
-                MainGame.Instance.spriteBatch.Draw(Camera.CameraDebugArea, new Vector2((float)Camera.VisibleArea.X,
+                Game1.Instance.spriteBatch.Draw(Camera.CameraDebugArea, new Vector2((float)Camera.VisibleArea.X,
                     (float)Camera.VisibleArea.Y), Color.Multiply(Color.White, 0.4f));
             if (Camera.canFlash)
-                Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, MainGame.Instance.spriteBatch,
+                Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, Game1.Instance.spriteBatch,
                     (float)(Camera.VisibleArea.X - 4 * Camera.VisibleArea.Width),
                     (float)(Camera.VisibleArea.Y - 4 * Camera.VisibleArea.Height), 10 * Camera.VisibleArea.Width,
                     10 * Camera.VisibleArea.Height, Color.Multiply(Camera.flashColor, Camera.alphaFlash));
             if (!Camera.canFade)
                 return;
-            Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, MainGame.Instance.spriteBatch,
+            Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, Game1.Instance.spriteBatch,
                 (float)(Camera.VisibleArea.X - 4 * Camera.VisibleArea.Width),
                 (float)(Camera.VisibleArea.Y - 4 * Camera.VisibleArea.Height), 10 * Camera.VisibleArea.Width,
                 10 * Camera.VisibleArea.Height, Color.Multiply(Camera.fadeColor, Camera.alphaFade));

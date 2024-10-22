@@ -45,7 +45,7 @@ namespace HydroGene
             Camera.Flash(2f, Color.Black);
             MediaPlayer.Play(AssetManager.Song_BulletDefenderMenu);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = MainGame.VOLUME_MUSIC;
+            MediaPlayer.Volume = Game1.VOLUME_MUSIC;
 
             this.TextTitle = new Text(AssetManager.FontFont28, "BULLETS DEFENDER",
                 new Vector2(0.0f, 20f), Color.White);
@@ -55,7 +55,7 @@ namespace HydroGene
             this.listActors.Add((IActor)this.TextTitle);
 
             this.TextBestScore = new Text(AssetManager.FontFont28, "BEST SCORE: "
-                + (object)MainGame.BEST_SCORE, new Vector2(0.0f, (float)Camera.VisibleArea.Height * 0.6f),
+                + (object)Game1.BEST_SCORE, new Vector2(0.0f, (float)Camera.VisibleArea.Height * 0.6f),
                 Color.White);
             this.TextBestScore.Align = Util.Alignement.CENTER_X;
             this.TextBestScore.Scale = new Vector2(1.4f);
@@ -156,7 +156,7 @@ namespace HydroGene
             {
                 this.ListBullets.Add(new Bullet());
                 this.captureFirstClickPosition = MouseInput.GetPosition();
-                AssetManager.Sound_Shoot.SoundEffect.Play(MainGame.VOLUME_SFX, 0.98f, 0.0f);
+                AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX, 0.98f, 0.0f);
             }
             if (this.ListBullets.Count > 0)
             {
@@ -173,7 +173,7 @@ namespace HydroGene
                             listBullet.Position = this.lastEndPosition;
                             listBullet.IsJustReleased = true;
                         }
-                        AssetManager.Sound_Shoot.SoundEffect.Play(MainGame.VOLUME_SFX * 0.2f, 0.0f, 0.0f);
+                        AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX * 0.2f, 0.0f, 0.0f);
 
                         int force = (int)((double)this.lastEndPosition.Y
                                         - (double)this.StartPointLeftPart.Y
@@ -191,7 +191,7 @@ namespace HydroGene
                         listBullet.ToRemove = true;
                         Camera.Shake(1f, 0.5f, Axe.ANGLE);
                         Camera.Fade(1f, Color.Black);
-                        AssetManager.Sound_Touchblock.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                        AssetManager.Sound_Touchblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                     }
                     if (this.SpriteExit.IsActive && Util.Overlaps((IActor)listBullet, (IActor)this.SpriteExit))
                     {
@@ -201,7 +201,7 @@ namespace HydroGene
                         listBullet.ToRemove = true;
                         Camera.Fade(1f, Color.Black);
                         Camera.Shake(1f, 0.5f, Axe.ANGLE);
-                        AssetManager.Sound_Touchblock.SoundEffect.Play(MainGame.VOLUME_SFX, 0.0f, 0.0f);
+                        AssetManager.Sound_Touchblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
                     }
                     listBullet.Update(gameTime);
                 }
