@@ -53,7 +53,8 @@ namespace HydroGene
         public void Initialize()
         {
             this.Dispose();
-            this.RenderTarget = new RenderTarget2D(this.GraphicsDevice, this.screenRect.Width, this.screenRect.Height);
+            this.RenderTarget = new RenderTarget2D(this.GraphicsDevice, 
+                this.screenRect.Width, this.screenRect.Height);
         }
 
         public void Dispose()
@@ -110,20 +111,25 @@ namespace HydroGene
                         MidpointRounding.AwayFromZero);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X, this.DrawRect.Y + num,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), 
+                        new Rectangle?(this.screenRect), Color.White);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X, this.DrawRect.Y + (num >= 0
                         ? num - (int)((double)this.Height * (double)this.Scale)
                         : num + (int)((double)this.Height * (double)this.Scale)),
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), 
+                        new Rectangle?(this.screenRect), Color.White);
                 }
                 else if ((double)vector2.Y == 0.0)
                 {
                     int num = (int)Math.Round((double)vector2.X * (double)this.Scale,
                         MidpointRounding.AwayFromZero);
+
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + num, this.DrawRect.Y,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), 
+                        new Rectangle?(this.screenRect), Color.White);
+
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + (num >= 0
                         ? num - (int)((double)this.Width * (double)this.Scale)
@@ -143,16 +149,20 @@ namespace HydroGene
                                   : num2 - (int)((double)this.Height * (double)this.Scale);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + num1, this.DrawRect.Y + num2,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), 
+                        Color.White);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + num1, this.DrawRect.Y + num4,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect),
+                        Color.White);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + num3, this.DrawRect.Y + num2,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect),
+                        Color.White);
                     this.mainGame.spriteBatch.Draw((Texture2D)this.RenderTarget,
                         new Rectangle(this.DrawRect.X + num3, this.DrawRect.Y + num4,
-                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), Color.White);
+                        this.DrawRect.Width, this.DrawRect.Height), new Rectangle?(this.screenRect), 
+                        Color.White);
                 }
             }
             this.mainGame.spriteBatch.End();

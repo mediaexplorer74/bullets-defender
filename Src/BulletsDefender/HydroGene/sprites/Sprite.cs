@@ -110,7 +110,10 @@ namespace HydroGene
             this.Velocity.Y = 0.0f;
         }
 
-        public bool IsOnScreen() => Util.Overlaps((IActor)this, Camera.VisibleArea);
+        public bool IsOnScreen()
+        {
+            return Util.Overlaps((IActor)this, Camera.VisibleArea);
+        }
 
         protected void RefreshTexture(Texture2D newTexture)
         {
@@ -143,7 +146,8 @@ namespace HydroGene
         public void StopEffectTrail()
         {
             this.ActiveEffectTrail = false;
-            this.listTrailPosition.RemoveAll((Predicate<Vector2>)(item => (double)item.X != 0.0 || (double)item.Y != 0.0));
+            this.listTrailPosition.RemoveAll((Predicate<Vector2>)(item => (double)item.X != 0.0 
+            || (double)item.Y != 0.0));
         }
 
         public virtual void Update(GameTime gameTime)
@@ -151,7 +155,11 @@ namespace HydroGene
             if (Game1.IS_PAUSED || !this.IsActive)
                 return;
             this.Move(this.Velocity.X, this.Velocity.Y);
-            this.BoundingBox = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)((double)this.Texture.Width * (double)this.Scale.X), (int)((double)this.Texture.Height * (double)this.Scale.Y));
+
+            this.BoundingBox = new Rectangle((int)this.Position.X,
+                (int)this.Position.Y, (int)((double)this.Texture.Width * (double)this.Scale.X), 
+                (int)((double)this.Texture.Height * (double)this.Scale.Y));
+
             if ((double)this.Alpha >= 1.0)
                 this.Alpha = 1f;
             else if ((double)this.Alpha <= 0.0)
@@ -173,14 +181,18 @@ namespace HydroGene
             switch (this.Align)
             {
                 case Util.Alignement.CENTER_X:
-                    this.Position = new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2 - this.Width / 2), this.Position.Y);
+                    this.Position = new Vector2(Camera.Position.X 
+                        + (float)(Camera.VisibleArea.Width / 2 - this.Width / 2), this.Position.Y);
                     break;
                 case Util.Alignement.CENTER_Y:
-                    this.Position = new Vector2(this.Position.X, Camera.Position.Y + (float)(Camera.VisibleArea.Height / 2 - this.Height / 2));
+                    this.Position = new Vector2(this.Position.X, 
+                        Camera.Position.Y + (float)(Camera.VisibleArea.Height / 2 - this.Height / 2));
                     break;
                 case Util.Alignement.CENTER_X | Util.Alignement.CENTER_Y:
-                    this.Position = new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2 - this.Width / 2), this.Position.Y);
-                    this.Position = new Vector2(this.Position.X, Camera.Position.Y + (float)(Camera.VisibleArea.Height / 2 - this.Height / 2));
+                    this.Position = new Vector2(Camera.Position.X 
+                        + (float)(Camera.VisibleArea.Width / 2 - this.Width / 2), this.Position.Y);
+                    this.Position = new Vector2(this.Position.X, 
+                        Camera.Position.Y + (float)(Camera.VisibleArea.Height / 2 - this.Height / 2));
                     break;
             }
             if (!this.EffectBlink)
@@ -194,31 +206,54 @@ namespace HydroGene
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            this.flipEffect = (SpriteEffects)0;
+            this.flipEffect = SpriteEffects.None;
+
             if (this.Flip.X)
-                this.flipEffect = (SpriteEffects)1;
+                this.flipEffect = SpriteEffects.FlipHorizontally;
+
             if (this.Flip.Y)
-                this.flipEffect = (SpriteEffects)2;
-            if (this.Flip.X && this.Flip.Y)
-                this.flipEffect = (SpriteEffects)3;
+                this.flipEffect = SpriteEffects.FlipVertically;
+
+            //RnD
+            //if (this.Flip.X && this.Flip.Y)
+            //    this.flipEffect = (SpriteEffects)3;
+
             if (!this.IsActive || !this.IsVisible)
                 return;
+
             if (this.ActiveEffectTrail)
             {
                 foreach (Vector2 vector2 in this.listTrailPosition)
-                    spriteBatch.Draw(this.Texture, vector2, new Rectangle?(),
-                        Color.Multiply(this.Color, (float)this.listTrailPosition.IndexOf(vector2) / 100f),
-                        MathHelper.ToRadians(this.Angle), this.Origin, this.Scale, this.flipEffect, 0.0f);
+                {
+                    spriteBatch.Draw
+                    (
+                      this.Texture, 
+                      vector2, 
+                      new Rectangle?(),
+                      Color.Multiply(this.Color, 
+                      (float)this.listTrailPosition.IndexOf(vector2) / 100f),
+                      MathHelper.ToRadians(this.Angle),
+                      this.Origin, 
+                      this.Scale, 
+                      this.flipEffect, 0.0f
+                    );
+                }
             }
+
             if (this.Texture != null)
+            {
                 spriteBatch.Draw(this.Texture, this.Position, new Rectangle?(),
                     Color.Multiply(this.Color, this.Alpha), MathHelper.ToRadians(this.Angle),
                     this.Origin, this.Scale, this.flipEffect, 0.0f);
+            }
+
             if (!this.DrawBoundingBox)
                 return;
+
             Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, spriteBatch,
                 (float)this.BoundingBox.X, (float)this.BoundingBox.Y,
-                this.BoundingBox.Width, this.BoundingBox.Height, Color.Multiply(this.BoundingBoxColor, 0.5f));
+                this.BoundingBox.Width, this.BoundingBox.Height, 
+                Color.Multiply(this.BoundingBoxColor, 0.5f));
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HydroGene.MouseInput
-// Assembly: Bullets Defender, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 2152C338-0479-438C-8FC2-A98509E908DF
-// Assembly location: C:\Users\Admin\Desktop\RE\BulletsDefender\Bullets Defender.exe
+﻿// HydroGene.MouseInput
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -17,13 +13,13 @@ namespace HydroGene
 
         public static bool JustLeftClicked()
         {
-            return MouseInput.newMouseState.LeftButton == ButtonState.Pressed
-                      && MouseInput.oldMouseState.LeftButton != ButtonState.Pressed;
+            return MouseInput.newMouseState.LeftButton == ButtonState.Pressed && 
+                   MouseInput.oldMouseState.LeftButton != ButtonState.Pressed;
         }
 
         public static bool JustLeftReleased()
         {
-            return /*MouseInput.newMouseState.LeftButton == null &&*/
+            return MouseInput.newMouseState.LeftButton == ButtonState.Released &&
                    MouseInput.oldMouseState.LeftButton > 0;
         }
 
@@ -34,13 +30,13 @@ namespace HydroGene
 
         public static bool JustRightClicked()
         {
-            return MouseInput.newMouseState.RightButton == ButtonState.Pressed
-                      && MouseInput.oldMouseState.RightButton != ButtonState.Pressed;
+            return MouseInput.newMouseState.RightButton == ButtonState.Pressed &&
+                   MouseInput.oldMouseState.RightButton != ButtonState.Pressed;
         }
 
         public static bool JustRightReleased()
         {
-            return /*MouseInput.newMouseState.RightButton == null &&*/ 
+            return MouseInput.newMouseState.RightButton == ButtonState.Released && 
                    MouseInput.oldMouseState.RightButton > 0;
         }
 
@@ -53,7 +49,6 @@ namespace HydroGene
         {
             MouseState state = Mouse.GetState();
             double x = (double)state.X;
-            state = Mouse.GetState();
             double y = (double)state.Y;
             return Vector2.Divide(new Vector2((float)x, (float)y), Game1.Instance.Screen.Scale);
         }

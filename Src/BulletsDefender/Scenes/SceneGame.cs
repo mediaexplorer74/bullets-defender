@@ -152,44 +152,122 @@ namespace HydroGene
 
         public override void Update(GameTime gameTime)
         {
+            // ?
             if (Game1.Instance.Screen.Effect == null)
             {
                 if (Game1.Instance.IsActive)
                     this.TimerGenerateEnemy1.Update(gameTime);
+
                 if ((double)this.TextIncrement.Alpha > 0.0)
                 {
                     this.TextIncrement.Alpha -= 0.012f;
                     Text textIncrement = this.TextIncrement;
-                    textIncrement.Position = Vector2.Subtract(textIncrement.Position, new Vector2(0.0f, 1.2f));
+                    textIncrement.Position = Vector2.Subtract(textIncrement.Position, 
+                        new Vector2(0.0f, 1.2f));
                 }
+
                 if ((double)this.TextScore.Scale.X > 1.0)
                 {
                     Text textScore = this.TextScore;
                     textScore.Scale = Vector2.Subtract(textScore.Scale, new Vector2(0.02f));
                 }
+
                 if ((double)this.TextScore.Scale.X <= 1.0)
                     this.TextScore.Scale = Vector2.One;
-                if (KBInput.JustPressed((Keys)112))
+
+                // RnD : DEBUG MODE
+                if (KBInput.JustPressed(Keys.F1))
                     Game1.IS_DEBUG = !Game1.IS_DEBUG;
+
                 this.TextAngle.IsActive = Game1.IS_DEBUG;
-                this.endPosition = MouseInput.LeftClicked() ? MouseInput.GetPosition() : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2), (float)(this.LeftPart.Y + 20));
-                this.MiddlePoint = new Vector2((float)(((double)this.EndPointOppositeLeftPart.X + (double)this.EndPointOppositeRightPart.X) / 2.0), this.EndPointOppositeRightPart.Y);
+
+                // mouse / touch / universal handling
+                if (MouseInput.LeftClicked())
+                {
+                    this.endPosition = MouseInput.LeftClicked()
+                        ? MouseInput.GetPosition()
+                        : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2),
+                        (float)(this.LeftPart.Y + 20));
+                }
+                else if (TouchInput.LeftClicked())
+                {
+                    this.endPosition = TouchInput.LeftClicked()
+                        ? TouchInput.GetPosition()
+                        : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2),
+                        (float)(this.LeftPart.Y + 20));
+                }
+                else
+                {
+                    this.endPosition = TouchInput.LeftClicked()
+                       ? TouchInput.GetPosition()
+                       : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2),
+                       (float)(this.LeftPart.Y + 20));
+                }
+
+                this.MiddlePoint = new Vector2((float)(((double)this.EndPointOppositeLeftPart.X
+                    + (double)this.EndPointOppositeRightPart.X) / 2.0), this.EndPointOppositeRightPart.Y);
+
+                // mouse handling
                 if (MouseInput.LeftClicked())
                 {
                     if ((double)MouseInput.GetPosition().Y >= (double)(Camera.VisibleArea.Height - 4))
+                    {
                         this.endPosition.Y = (float)(Camera.VisibleArea.Height - 4);
-                    else if ((double)MouseInput.GetPosition().Y <= (double)Camera.VisibleArea.Height * 0.60000002384185791)
+                    }
+                    else if ((double)MouseInput.GetPosition().Y
+                        <= (double)Camera.VisibleArea.Height * 0.60000002384185791)
+                    {
                         this.endPosition.Y = (float)Camera.VisibleArea.Height * 0.6f;
+                    }
+
                     if ((double)MouseInput.GetPosition().X <= (double)Camera.Position.X + 4.0)
+                    {
                         this.endPosition.X = Camera.Position.X + 4f;
+                    }
                     else if ((double)MouseInput.GetPosition().X >= (double)(Camera.VisibleArea.Width - 4))
+                    {
                         this.endPosition.X = (float)(Camera.VisibleArea.Width - 4);
+                    }
 
                     this.AngleBetween = Math.Atan2((double)MouseInput.GetPosition().Y
-                        - (double)this.MiddlePoint.Y, (double)MouseInput.GetPosition().X - (double)this.MiddlePoint.X);
+                        - (double)this.MiddlePoint.Y, (double)MouseInput.GetPosition().X
+                        - (double)this.MiddlePoint.X);
+
                     this.TextAngle.CurrentString = "ANGLE BETWEEN : "
                                   + (object)MathHelper.ToDegrees((float)this.AngleBetween);
                 }
+
+                // touch handling
+                if (TouchInput.LeftClicked())
+                {
+                    if ((double)TouchInput.GetPosition().Y >= (double)(Camera.VisibleArea.Height - 4))
+                    {
+                        this.endPosition.Y = (float)(Camera.VisibleArea.Height - 4);
+                    }
+                    else if ((double)TouchInput.GetPosition().Y
+                        <= (double)Camera.VisibleArea.Height * 0.60000002384185791)
+                    {
+                        this.endPosition.Y = (float)Camera.VisibleArea.Height * 0.6f;
+                    }
+
+                    if ((double)TouchInput.GetPosition().X <= (double)Camera.Position.X + 4.0)
+                    {
+                        this.endPosition.X = Camera.Position.X + 4f;
+                    }
+                    else if ((double)TouchInput.GetPosition().X >= (double)(Camera.VisibleArea.Width - 4))
+                    {
+                        this.endPosition.X = (float)(Camera.VisibleArea.Width - 4);
+                    }
+
+                    this.AngleBetween = Math.Atan2((double)TouchInput.GetPosition().Y
+                        - (double)this.MiddlePoint.Y, (double)TouchInput.GetPosition().X
+                        - (double)this.MiddlePoint.X);
+
+                    this.TextAngle.CurrentString = "ANGLE BETWEEN : "
+                                  + (object)MathHelper.ToDegrees((float)this.AngleBetween);
+                }
+
+
                 this.StartPointLeftPart = new Vector2((float)(this.LeftPart.X - 3),
                     (float)(this.LeftPart.Y + 1));
                 this.StartPointRightPart = new Vector2((float)(this.RightPart.X - 3),
@@ -205,12 +283,23 @@ namespace HydroGene
                 this.EndPointOppositeRightPart = Vector2.Add(-(this.endPosition),
                     Vector2.Multiply(new Vector2(2f, 2f), new Vector2((float)(this.RightPart.X - 3),
                     (float)(this.RightPart.Y + 1))));
+
+                // mouse handling
                 if (MouseInput.JustLeftClicked())
                 {
                     this.ListBullets.Add(new Bullet());
                     AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX - 0.1f, 0.98f, 0.0f);
                     this.captureFirstClickPosition = MouseInput.GetPosition();
                 }
+
+                // touch handling
+                if (TouchInput.JustLeftClicked())
+                {
+                    this.ListBullets.Add(new Bullet());
+                    AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX - 0.1f, 0.98f, 0.0f);
+                    this.captureFirstClickPosition = TouchInput.GetPosition();
+                }
+
                 if (this.ListBullets.Count > 0)
                 {
                     foreach (Bullet listBullet in this.ListBullets)
@@ -218,59 +307,102 @@ namespace HydroGene
                         if (!listBullet.CanUnleash)
                             listBullet.Position = Vector2.Add(this.endPosition,
                                 new Vector2(listBullet.Scale.X / 4f, listBullet.Scale.Y / 4f));
+
+                        // mouse handling
                         if (MouseInput.JustLeftReleased())
                         {
                             AssetManager.Sound_Shoot.Instance.Play();
+
                             if (!listBullet.IsJustReleased)
                             {
                                 listBullet.Position = this.lastEndPosition;
                                 listBullet.IsJustReleased = true;
                             }
-                            int force = (int)((double)this.lastEndPosition.Y - (double)this.StartPointLeftPart.Y + ((double)this.lastEndPosition.Y - (double)this.StartPointRightPart.Y)) / 8;
+
+                            int force = (int)((double)this.lastEndPosition.Y 
+                                - (double)this.StartPointLeftPart.Y + ((double)this.lastEndPosition.Y 
+                                - (double)this.StartPointRightPart.Y)) / 8;
+
                             listBullet.Unleash(this.AngleBetween, force);
                         }
+
+                        // touch handling
+                        if (TouchInput.JustLeftReleased())
+                        {
+                            AssetManager.Sound_Shoot.Instance.Play();
+
+                            if (!listBullet.IsJustReleased)
+                            {
+                                listBullet.Position = this.lastEndPosition;
+                                listBullet.IsJustReleased = true;
+                            }
+
+                            int force = (int)((double)this.lastEndPosition.Y
+                                - (double)this.StartPointLeftPart.Y + ((double)this.lastEndPosition.Y
+                                - (double)this.StartPointRightPart.Y)) / 8;
+
+                            listBullet.Unleash(this.AngleBetween, force);
+                        }
+
                         listBullet.Update(gameTime);
                     }
                 }
+
                 foreach (Enemy listEnemy in this.ListEnemies)
                 {
                     if (this.ListBullets.Count > 0)
                     {
                         foreach (Bullet listBullet in this.ListBullets)
                         {
-                            if (listBullet.CanUnleash && (double)listEnemy.Alpha > 0.0 && Util.Overlaps((IActor)listBullet, (IActor)listEnemy))
+                            if (listBullet.CanUnleash && (double)listEnemy.Alpha > 0.0 
+                                && Util.Overlaps((IActor)listBullet, (IActor)listEnemy))
                             {
                                 listEnemy.ReceiveDamage();
+
                                 if (listEnemy.Type < Enemy.EnemyType.Big)
                                     listEnemy.Velocity.Y = (float)-listBullet.Force / 2.5f;
-                                this.GenerateSplashParticle((byte)6, listEnemy.Position, listBullet.Color, true);
+
+                                this.GenerateSplashParticle((byte)6, listEnemy.Position, 
+                                    listBullet.Color, true);
+
                                 this.GenerateSplashParticle((byte)6, listEnemy.Position, Color.White);
+
                                 if (listEnemy.HP <= (byte)0)
                                 {
                                     this.RefreshScore(listEnemy.HP_MAX, listEnemy.Position);
-                                    this.GenerateSplashParticle((byte)12, listEnemy.Position, listEnemy.Color, true);
+                                    this.GenerateSplashParticle((byte)12, listEnemy.Position,
+                                        listEnemy.Color, true);
+
                                     listEnemy.ToRemove = true;
-                                    AssetManager.Sound_Destructblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
+                                    AssetManager.Sound_Destructblock.SoundEffect.Play(
+                                        Game1.VOLUME_SFX, 0.0f, 0.0f);
                                 }
                                 else
-                                    AssetManager.Sound_Touchblock.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
+                                    AssetManager.Sound_Touchblock.SoundEffect.Play(
+                                        Game1.VOLUME_SFX, 0.0f, 0.0f);
+
                                 listBullet.ToRemove = true;
                             }
                         }
                     }
+
                     foreach (Sprite protector in this.Protectors)
                     {
-                        if ((double)protector.Alpha > 0.0 && Util.Overlaps((IActor)protector, (IActor)listEnemy))
+                        if ((double)protector.Alpha > 0.0 && Util.Overlaps((IActor)protector, 
+                            (IActor)listEnemy))
                         {
                             this.GenerateSplashParticle((byte)24, protector.Position, Color.White, true);
                             listEnemy.ToRemove = true;
                             protector.Alpha = 0.0f;
                             Camera.Shake(1f, 0.14f, Axe.ANGLE);
-                            AssetManager.Sound_Touchprotector.SoundEffect.Play(Game1.VOLUME_SFX, 0.0f, 0.0f);
+
+                            AssetManager.Sound_Touchprotector.SoundEffect.Play(
+                                Game1.VOLUME_SFX, 0.0f, 0.0f);
                         }
                     }
                     listEnemy.Update(gameTime);
                 }
+
                 if (this.ListSplashParticle.Count > 0)
                 {
                     for (int index = 0; index < this.ListSplashParticle.Count; ++index)
@@ -280,7 +412,10 @@ namespace HydroGene
                             this.ListSplashParticle[index] = (SplashParticle)null;
                     }
                 }
-                this.ListSplashParticle.RemoveAll((Predicate<SplashParticle>)(item => item == null || item.ToRemove));
+
+                this.ListSplashParticle.RemoveAll((Predicate<SplashParticle>)(
+                    item => item == null || item.ToRemove));
+
                 this.ListBullets.RemoveAll((Predicate<Bullet>)(item => item.ToRemove));
                 this.ListEnemies.RemoveAll((Predicate<Enemy>)(item => item.ToRemove));
                 this.lastEndPosition = this.endPosition;
@@ -288,26 +423,60 @@ namespace HydroGene
             else
             {
                 this.TextGameOver.IsActive = true;
-                this.TextGameOver.CurrentString = "       GAME OVER\n      YOUR SCORE: " + (object)(this.Score * 50) + "\n\n\nClic to return to the menu.";
+
+                this.TextGameOver.CurrentString = 
+                    "       GAME OVER\n      YOUR SCORE: " + (object)(this.Score * 50)
+                    + "\n\n\nClick to return to the menu.";
+
+                // mouse handling
                 if (MouseInput.JustLeftClicked())
+                {
                     Camera.Fade(1f, Color.Black);
+                }
+
+                // touch handling
+                if (TouchInput.JustLeftClicked())
+                {
+                    Camera.Fade(1f, Color.Black);
+                }
             }
+
             this.Clean();
+            
             base.Update(gameTime);
+            
             foreach (Sprite protector in this.Protectors)
             {
                 int num = (int)byte.Parse(protector.Name) % 2 == 0 ? -2 : 2;
                 protector.Angle += (float)num;
-                if ((double)protector.Velocity.X == 0.0 && ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(item => (double)item.Alpha > 0.0)) == 1)
+                if ((double)protector.Velocity.X == 0.0 
+                    && ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(
+                    item => (double)item.Alpha > 0.0)) == 1)
                     protector.Velocity.X = 3f;
-                if ((double)protector.Position.X - (double)protector.Origin.X + (double)protector.Scale.X >= (double)Camera.VisibleArea.Width)
+
+                if ((double)protector.Position.X - (double)protector.Origin.X
+                    + (double)protector.Scale.X >= (double)Camera.VisibleArea.Width)
                     protector.Velocity.X = -Math.Abs(protector.Velocity.X);
-                if ((double)protector.Position.X - (double)protector.Origin.X <= (double)Camera.Position.X)
+
+                if ((double)protector.Position.X - (double)protector.Origin.X
+                    <= (double)Camera.Position.X)
                     protector.Velocity.X = Math.Abs(protector.Velocity.X);
-                protector.BoundingBox = new Rectangle((int)((double)protector.Position.X - (double)protector.Origin.X * (double)protector.Scale.X), (int)((double)protector.Position.Y - (double)protector.Origin.Y * (double)protector.Scale.Y), (int)protector.Scale.X, (int)protector.Scale.Y);
+
+                protector.BoundingBox = new Rectangle((int)((double)protector.Position.X
+                    - (double)protector.Origin.X * (double)protector.Scale.X),
+                    (int)((double)protector.Position.Y - 
+                    (double)protector.Origin.Y * (double)protector.Scale.Y), 
+                    (int)protector.Scale.X, (int)protector.Scale.Y);
             }
-            if (Game1.Instance.Screen.Effect != null || ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(item => (double)item.Alpha > 0.0)) > 0)
+
+            if 
+            (
+                Game1.Instance.Screen.Effect != null 
+                || ((IEnumerable<Sprite>)this.Protectors).Count<Sprite>((Func<Sprite, bool>)(
+                item => (double)item.Alpha > 0.0)) > 0
+            )
                 return;
+
             Camera.Flash(0.5f, Color.White);
             Camera.Shake(16f, 0.5f);
             Game1.Instance.Screen.Effect = AssetManager.EffectBlackandwhite;
@@ -326,9 +495,14 @@ namespace HydroGene
             Vector2 vector2_2 = location2.ToVector2();
             Vector2 endPoint2 = new Vector2((float)this.RightPart.X, (float)(this.RightPart.Y + 160));
             Color blue2 = Color.Blue;
+
             Primitive.DrawLine(spriteBatch2, vector2_2, endPoint2, blue2, 6);
-            Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointLeftPart, this.endPosition, Color.White, 4);
-            Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointRightPart, this.endPosition, Color.White, 4);
+
+            Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointLeftPart, this.endPosition,
+                Color.White, 4);
+            Primitive.DrawLine(this.mainGame.spriteBatch, this.StartPointRightPart, this.endPosition,
+                Color.White, 4);
+
             if (Game1.IS_DEBUG)
             {
                 Primitive.DrawRectangle(Primitive.PrimitiveStyle.FILL, this.mainGame.spriteBatch,

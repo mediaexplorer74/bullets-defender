@@ -122,8 +122,28 @@ namespace HydroGene
 
         public override void Update(GameTime gameTime)
         {
-            this.endPosition = MouseInput.LeftClicked() ? MouseInput.GetPosition() : new Vector2(Camera.Position.X + (float)(Camera.VisibleArea.Width / 2), (float)(this.LeftPart.Y + 20));
-            this.MiddlePoint = new Vector2((float)(((double)this.EndPointOppositeLeftPart.X + (double)this.EndPointOppositeRightPart.X) / 2.0), this.EndPointOppositeRightPart.Y);
+            // mouse / touch universal handling
+            if (MouseInput.LeftClicked())
+            {
+                this.endPosition = MouseInput.GetPosition();               
+            }
+            else if (TouchInput.LeftClicked())
+            {
+                this.endPosition = TouchInput.GetPosition();                 
+            }
+            else
+            {
+                this.endPosition = new Vector2
+                    (
+                      Camera.Position.X + (float)(Camera.VisibleArea.Width / 2),
+                      (float)(this.LeftPart.Y + 20)
+                    );
+            }
+
+            this.MiddlePoint = new Vector2((float)(((double)this.EndPointOppositeLeftPart.X 
+                + (double)this.EndPointOppositeRightPart.X) / 2.0), this.EndPointOppositeRightPart.Y);
+
+            // mouse handling
             if (MouseInput.LeftClicked())
             {
                 if ((double)MouseInput.GetPosition().Y >= (double)(Camera.VisibleArea.Height - 4))
@@ -134,8 +154,30 @@ namespace HydroGene
                     this.endPosition.X = Camera.Position.X + 4f;
                 else if ((double)MouseInput.GetPosition().X >= (double)(Camera.VisibleArea.Width - 4))
                     this.endPosition.X = (float)(Camera.VisibleArea.Width - 4);
-                this.AngleBetween = Math.Atan2((double)MouseInput.GetPosition().Y - (double)this.MiddlePoint.Y, (double)MouseInput.GetPosition().X - (double)this.MiddlePoint.X);
+
+                this.AngleBetween = Math.Atan2((double)MouseInput.GetPosition().Y
+                    - (double)this.MiddlePoint.Y, (double)MouseInput.GetPosition().X
+                    - (double)this.MiddlePoint.X);
             }
+
+            // touch handling
+            if (TouchInput.LeftClicked())
+            {
+                if ((double)TouchInput.GetPosition().Y >= (double)(Camera.VisibleArea.Height - 4))
+                    this.endPosition.Y = (float)(Camera.VisibleArea.Height - 4);
+                else if ((double)TouchInput.GetPosition().Y <= (double)Camera.VisibleArea.Height * 0.60000002384185791)
+                    this.endPosition.Y = (float)Camera.VisibleArea.Height * 0.6f;
+                if ((double)TouchInput.GetPosition().X <= (double)Camera.Position.X + 4.0)
+                    this.endPosition.X = Camera.Position.X + 4f;
+                else if ((double)TouchInput.GetPosition().X >= (double)(Camera.VisibleArea.Width - 4))
+                    this.endPosition.X = (float)(Camera.VisibleArea.Width - 4);
+
+                this.AngleBetween = Math.Atan2((double)TouchInput.GetPosition().Y
+                    - (double)this.MiddlePoint.Y, (double)TouchInput.GetPosition().X
+                    - (double)this.MiddlePoint.X);
+            }
+
+
             this.StartPointLeftPart = new Vector2((float)(this.LeftPart.X - 3),
                 (float)(this.LeftPart.Y + 1));
 
@@ -152,21 +194,25 @@ namespace HydroGene
                 Vector2.Multiply(new Vector2(2f, 2f), new Vector2((float)(this.RightPart.X - 3),
                 (float)(this.RightPart.Y + 1))));
 
-            if (MouseInput.JustLeftClicked())
+            // mouse / touch handling
+            if (MouseInput.JustLeftClicked() || TouchInput.JustLeftClicked())
             {
                 this.ListBullets.Add(new Bullet());
                 this.captureFirstClickPosition = MouseInput.GetPosition();
                 AssetManager.Sound_Shoot.SoundEffect.Play(Game1.VOLUME_SFX, 0.98f, 0.0f);
             }
+
             if (this.ListBullets.Count > 0)
             {
                 foreach (Bullet listBullet in this.ListBullets)
                 {
                     if (!listBullet.CanUnleash)
-                        listBullet.Position = Vector2.Add(this.endPosition, new Vector2(listBullet.Scale.X / 4f,
+                        listBullet.Position = Vector2.Add(this.endPosition, 
+                            new Vector2(listBullet.Scale.X / 4f,
                             listBullet.Scale.Y / 4f));
 
-                    if (MouseInput.JustLeftReleased())
+                    // mouse / touch handling 
+                    if (MouseInput.JustLeftReleased() || TouchInput.JustLeftReleased())
                     {
                         if (!listBullet.IsJustReleased)
                         {
@@ -183,6 +229,7 @@ namespace HydroGene
                         listBullet.Unleash(this.AngleBetween, force);
                     }
 
+                   
                     if (this.SpritePlay.IsActive && Util.Overlaps((IActor)listBullet, (IActor)this.SpritePlay))
                     {
                         this.SpritePlay.IsActive = false;

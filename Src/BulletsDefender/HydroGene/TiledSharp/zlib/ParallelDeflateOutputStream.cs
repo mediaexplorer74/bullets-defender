@@ -42,7 +42,14 @@ namespace Ionic.Zlib
         private volatile Exception _pendingException;
         private bool _handlingException;
         private object _eLock = new object();
-        private ParallelDeflateOutputStream.TraceBits _DesiredTrace = ParallelDeflateOutputStream.TraceBits.EmitAll | ParallelDeflateOutputStream.TraceBits.EmitEnter | ParallelDeflateOutputStream.TraceBits.Session | ParallelDeflateOutputStream.TraceBits.Compress | ParallelDeflateOutputStream.TraceBits.WriteEnter | ParallelDeflateOutputStream.TraceBits.WriteTake;
+
+        private ParallelDeflateOutputStream.TraceBits _DesiredTrace 
+            = ParallelDeflateOutputStream.TraceBits.EmitAll | 
+            ParallelDeflateOutputStream.TraceBits.EmitEnter | 
+            ParallelDeflateOutputStream.TraceBits.Session | 
+            ParallelDeflateOutputStream.TraceBits.Compress | 
+            ParallelDeflateOutputStream.TraceBits.WriteEnter | 
+            ParallelDeflateOutputStream.TraceBits.WriteTake;
 
         public ParallelDeflateOutputStream(Stream stream)
           : this(stream, CompressionLevel.Default, CompressionStrategy.Default, false)
@@ -84,7 +91,9 @@ namespace Ionic.Zlib
             get => this._maxBufferPairs;
             set
             {
-                this._maxBufferPairs = value >= 4 ? value : throw new ArgumentException(nameof(MaxBufferPairs), "Value must be 4 or greater.");
+                this._maxBufferPairs = value >= 4 
+                    ? value 
+                    : throw new ArgumentException(nameof(MaxBufferPairs), "Value must be 4 or greater.");
             }
         }
 
@@ -93,7 +102,10 @@ namespace Ionic.Zlib
             get => this._bufferSize;
             set
             {
-                this._bufferSize = value >= 1024 ? value : throw new ArgumentOutOfRangeException(nameof(BufferSize), "BufferSize must be greater than 1024 bytes");
+                this._bufferSize = value >= 1024
+                    ? value 
+                    : throw new ArgumentOutOfRangeException(nameof(BufferSize),
+                                 "BufferSize must be greater than 1024 bytes");
             }
         }
 
@@ -106,7 +118,9 @@ namespace Ionic.Zlib
             this._toWrite = new Queue<int>();
             this._toFill = new Queue<int>();
             this._pool = new List<WorkItem>();
-            int num = Math.Min(ParallelDeflateOutputStream.BufferPairsPerCore * Environment.ProcessorCount, this._maxBufferPairs);
+            int num = Math.Min(ParallelDeflateOutputStream.BufferPairsPerCore 
+                * Environment.ProcessorCount, this._maxBufferPairs);
+
             for (int ix = 0; ix < num; ++ix)
             {
                 this._pool.Add(new WorkItem(this._bufferSize, this._compressLevel, this.Strategy, ix));
@@ -157,9 +171,14 @@ namespace Ionic.Zlib
                     ++this._lastFilled;
                 }
                 WorkItem state = this._pool[index];
-                int count1 = state.buffer.Length - state.inputBytesAvailable > count ? count : state.buffer.Length - state.inputBytesAvailable;
+                int count1 = state.buffer.Length - state.inputBytesAvailable > count
+                    ? count 
+                    : state.buffer.Length - state.inputBytesAvailable;
                 state.ordinal = this._lastFilled;
-                Buffer.BlockCopy((Array)buffer, offset, (Array)state.buffer, state.inputBytesAvailable, count1);
+
+                Buffer.BlockCopy((Array)buffer, offset, 
+                    (Array)state.buffer, state.inputBytesAvailable, count1);
+
                 count -= count1;
                 offset += count1;
                 state.inputBytesAvailable += count1;
@@ -334,7 +353,8 @@ namespace Ionic.Zlib
                             else
                             {
                                 num = -1;
-                                this._outStream.Write(workItem.compressed, 0, workItem.compressedBytesAvailable);
+                                this._outStream.Write(workItem.compressed, 0, 
+                                    workItem.compressedBytesAvailable);
                                 this._runningCrc.Combine(workItem.crc, workItem.inputBytesAvailable);
                                 this._totalBytesProcessed += (long)workItem.inputBytesAvailable;
                                 workItem.inputBytesAvailable = 0;
@@ -413,18 +433,37 @@ namespace Ionic.Zlib
                 return;
             lock (this._outputLock)
             {
-                Console.Write("{0:000} PDOS ", (object)Thread.CurrentThread.GetHashCode());
-                Console.WriteLine(format, varParams);
+                //RnD
+                //Debug.Write("{0:000} PDOS ", (object)Thread.CurrentThread.GetHashCode());
+                Debug.WriteLine(format, varParams);
             }
         }
 
         public override bool CanSeek => false;
 
-        public override bool CanRead => false;
+        public override bool CanRead
+        {
+            get
+            {
+                return false;
+            }
+        }
 
-        public override bool CanWrite => this._outStream.CanWrite;
+        public override bool CanWrite
+        {
+            get
+            {
+                return this._outStream.CanWrite;
+            }
+        }
 
-        public override long Length => throw new NotSupportedException();
+        public override long Length
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
 
         public override long Position
         {
@@ -437,9 +476,15 @@ namespace Ionic.Zlib
             throw new NotSupportedException();
         }
 
-        public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+        public override long Seek(long offset, SeekOrigin origin)
+        {
+            throw new NotSupportedException();
+        }
 
-        public override void SetLength(long value) => throw new NotSupportedException();
+        public override void SetLength(long value)
+        {
+            throw new NotSupportedException();
+        }
 
         [Flags]
         private enum TraceBits : uint

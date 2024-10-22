@@ -34,11 +34,12 @@ namespace Bullets_Defender
 
         protected override void UnloadContent()
         {
+            //
         }
 
         protected override void Update(GameTime gameTime)
         {
-            GamePadState state1 = GamePad.GetState((PlayerIndex)0);
+            GamePadState state1 = GamePad.GetState(PlayerIndex.One);
 
             GamePadButtons buttons = state1.Buttons;
             if (buttons.Back != ButtonState.Pressed)

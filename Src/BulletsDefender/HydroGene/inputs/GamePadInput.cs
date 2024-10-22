@@ -60,11 +60,13 @@ namespace HydroGene
             GamePad.SetVibration(player, intensityLeft, intensityRight);
         }
 
-        public static void Vibrate(
+        public static void Vibrate
+        (
           float intensityLeft,
           float intensityRight,
           float timeVibration,
-          PlayerIndex player = 0)
+          PlayerIndex player = 0
+        )
         {
             if (!GamePadInput.capabilities.IsConnected)
                 return;
