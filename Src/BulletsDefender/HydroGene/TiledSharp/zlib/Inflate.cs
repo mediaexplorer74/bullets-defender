@@ -6,7 +6,7 @@
 
 using System;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     internal sealed class InflateBlocks
@@ -118,7 +118,7 @@ namespace Ionic.Zlib
                             }
                             int num6 = num1 & 7;
                             this.last = num6 & 1;
-                            switch (num6 >>> 1)
+                            switch (num6 >> 1) // >>>
                             {
                                 case 0:
                                     int num7 = num1 >> 3;

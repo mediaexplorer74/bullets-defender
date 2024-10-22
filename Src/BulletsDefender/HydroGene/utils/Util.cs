@@ -7,7 +7,7 @@
 using Microsoft.Xna.Framework;
 using System;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class Util

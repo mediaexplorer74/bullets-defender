@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-#nullable disable
+
 namespace HydroGene
 {
     public class Game1 : Game
@@ -25,11 +25,11 @@ namespace HydroGene
         public static float VOLUME_SFX = 0.7f;
         public static bool CAN_PAUSE = true;
         public static bool IS_PAUSED = false;
-        public const int DEFAULT_WIDTH = 800;//400;//500;
-        public const int DEFAULT_HEIGHT = 1280;//640;//840;
+        //public const int DEFAULT_WIDTH = 800;//400;//500;
+        //public const int DEFAULT_HEIGHT = 1280;//640;//840;
 
         //RnD
-        public float Scale = 1.0f;//1f;
+        public float Scale = 0.8f;//1.75f;
         public static int WIDTH;
         public static int HEIGHT;
         public static string GAME_VERSION = "1.0.0";
@@ -43,13 +43,25 @@ namespace HydroGene
         {
             this.Window.Title = "Bullets Defender " + Game1.GAME_VERSION;
             this.graphics = new GraphicsDeviceManager((Game)this);
-            this.graphics.GraphicsProfile = (GraphicsProfile)1;
+
+            //RnD
+            //this.graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            this.graphics.GraphicsProfile = GraphicsProfile.Reach;
+
             this.Content.RootDirectory = "Content";
-            this.graphics.PreferredBackBufferWidth = 800;//400;//500;
-            this.graphics.PreferredBackBufferHeight = 1280;//640;//840;
-            Game1.WIDTH = this.graphics.PreferredBackBufferWidth;
-            Game1.HEIGHT = this.graphics.PreferredBackBufferHeight;
-            this.graphics.IsFullScreen = false;
+
+            //this.graphics.PreferredBackBufferWidth = 800;//400;//500;
+            //this.graphics.PreferredBackBufferHeight = 1280;//640;//840;
+
+            Game1.WIDTH = this.graphics.PreferredBackBufferWidth > 1400 ? 
+                this.graphics.PreferredBackBufferWidth - 500 :
+                this.graphics.PreferredBackBufferWidth - 250;
+            Game1.HEIGHT = this.graphics.PreferredBackBufferHeight > 1000 ? 
+                this.graphics.PreferredBackBufferHeight - 250 :
+                this.graphics.PreferredBackBufferHeight;
+
+            //RnD
+            this.graphics.IsFullScreen = true;//false;
             this.gameState = new GameState(this);
             Game1.Instance = this;
         }
@@ -58,8 +70,14 @@ namespace HydroGene
         {
             PresentationParameters presentationParameters
                       = this.graphics.GraphicsDevice.PresentationParameters;
-            Game1.TargetWidth = 800;//400;// 500;
-            Game1.TargetHeight = 1280;//640;//840;
+
+            //RnD
+            Game1.TargetWidth = this.graphics.PreferredBackBufferWidth > 1400 ?
+                this.graphics.PreferredBackBufferWidth - 500 :
+                this.graphics.PreferredBackBufferWidth - 250;//800;//400;// 500;
+            Game1.TargetHeight = this.graphics.PreferredBackBufferHeight > 1000 ? 
+                this.graphics.PreferredBackBufferHeight - 250 : 
+                this.graphics.PreferredBackBufferHeight;//1280;//640;//840;
 
             this.render = new RenderTarget2D(
                 this.graphics.GraphicsDevice, Game1.TargetWidth, Game1.TargetHeight);
@@ -88,8 +106,12 @@ namespace HydroGene
 
         protected override void Update(GameTime gameTime)
         {
-            Game1.WIDTH = this.graphics.PreferredBackBufferWidth;
-            Game1.HEIGHT = this.graphics.PreferredBackBufferHeight;
+            Game1.WIDTH = this.graphics.PreferredBackBufferWidth > 1400 ?
+                this.graphics.PreferredBackBufferWidth - 500 :
+                this.graphics.PreferredBackBufferWidth - 250;
+            Game1.HEIGHT = this.graphics.PreferredBackBufferHeight > 1000 ?
+                this.graphics.PreferredBackBufferHeight - 250 : 
+                this.graphics.PreferredBackBufferHeight;
 
             GamePadInput.capabilities = GamePad.GetCapabilities(PlayerIndex.One);
             
@@ -111,14 +133,15 @@ namespace HydroGene
                 this.Screen.Scale += 0.05f;
             }
 
-            if ((double)this.Screen.Scale > 1.0)
+            //RnD
+            /*if ((double)this.Screen.Scale > 1.0)
             {
                 this.Screen.Scale = 1f;
             }
             else if ((double)this.Screen.Scale <= 0.40000000596046448)
             {
                 this.Screen.Scale = 0.4f;
-            }
+            }*/
 
             Game1.WIDTH = this.Screen.Width;
             Game1.HEIGHT = this.Screen.Height;

@@ -7,7 +7,7 @@
 using System;
 using System.IO;
 
-#nullable disable
+
 namespace Ionic.Crc
 {
     public class CrcCalculatorStream : Stream, IDisposable

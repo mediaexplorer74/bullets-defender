@@ -7,7 +7,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxList<T> : KeyedCollection<string, T> where T : ITmxElement

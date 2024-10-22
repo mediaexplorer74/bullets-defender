@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxLayer : ITmxElement

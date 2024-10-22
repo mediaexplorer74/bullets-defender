@@ -7,7 +7,7 @@
 using System.Globalization;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxColor

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class Text : IActor

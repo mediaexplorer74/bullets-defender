@@ -6,7 +6,7 @@
 
 using Microsoft.Xna.Framework.Input;
 
-#nullable disable
+
 namespace HydroGene
 {
     public static class KBInput

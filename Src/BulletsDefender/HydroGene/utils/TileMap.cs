@@ -8,9 +8,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TiledSharp;
 
-#nullable disable
+
 namespace HydroGene.utils
 {
     internal class TileMap : IActor
@@ -315,7 +316,7 @@ namespace HydroGene.utils
                     int num3 = 2 / this.TileWidth;
                     Vector2 position2 = pSprite.Position;
                     int num4 = pSprite.Height / this.TileHeight;
-                    Console.WriteLine("MOD = " + (object)(num1 % 64));
+                    Debug.WriteLine("MOD = " + (object)(num1 % 64));
                     return true;
                 }
             }
@@ -338,7 +339,7 @@ namespace HydroGene.utils
             List<Vector2> vector2List = new List<Vector2>();
             if (pLayer >= this.Map.Layers.Count)
             {
-                Console.WriteLine("ERROR!! because : " + (object)pLayer + " is not existing on the " + (object)(this.Map.Layers.Count - 1) + " nb of Layers of this Tilemap!");
+                Debug.WriteLine("ERROR!! because : " + (object)pLayer + " is not existing on the " + (object)(this.Map.Layers.Count - 1) + " nb of Layers of this Tilemap!");
             }
             else
             {

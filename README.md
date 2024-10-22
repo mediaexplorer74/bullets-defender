@@ -1,4 +1,4 @@
-## Bullets-Defender UWP v1.0.0 (alpha)
+## Bullets-Defender v1.0.0 (alpha) - uwp branch
 ![](Images/logo.png)
 
 My micro-RnD of Bullets-Defender (Fast and ultra dynamic action game when you need to destroy every squares and protect yours)) arcade/shooter game :)
@@ -10,6 +10,10 @@ And second (goal): add some "virtual pad" =)
 ![](Images/shot01.png)
 
 ![](Images/shot02.png)
+
+![](Images/shot03.png)
+
+![](Images/shot04.png)
 
 
 ## My 2 cents (status)
@@ -60,8 +64,8 @@ I didn't have much time to devote to it, you know I'm still working on my big pr
 - https://hydrogene.itch.io/bullets-defender Original Windows desktop version of Bullets Defender game
 
 ## ToDo
-- add some "virtual pad" (touchpad) for W10M 
-- Screen auto-scaling 
+- Fix screen auto-scaling (known bug: only half of game drawn on my Lumia 940 with W10M Astoria)))
+- Realize some menu, and normal game exit after game over ;)) 
 
 ## ..
 AS IS. No support. RnD only / DIY

@@ -6,8 +6,8 @@
 
 using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics;
 
-#nullable disable
 namespace HydroGene
 {
     internal class Tween
@@ -71,10 +71,10 @@ namespace HydroGene
 
         private void PrintTrace(Tween tween)
         {
-            Console.Write("EASE = " + (object)tween.Ease + " | ");
-            Console.Write("TARGET = " + (object)tween.Target + " | ");
-            Console.Write("TIME = " + (object)tween.Time + " | ");
-            Console.WriteLine("VALUE = " + (object)tween.Value);
+            Debug.Write("EASE = " + (object)tween.Ease + " | ");
+            Debug.Write("TARGET = " + (object)tween.Target + " | ");
+            Debug.Write("TIME = " + (object)tween.Time + " | ");
+            Debug.WriteLine("VALUE = " + (object)tween.Value);
         }
 
         public void Update(GameTime gameTime)

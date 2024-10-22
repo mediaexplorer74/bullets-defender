@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class TouchInput
@@ -48,9 +48,15 @@ namespace HydroGene
 
         public static Vector2 GetPosition()
         {
-            TouchCollection state = TouchPanel.GetState();
-            double x = (double)state[0].Position.X;
-            double y = (double)state[0].Position.Y;
+            double x = 0;
+            double y = 0;
+
+            //if (TouchInput.newTouchState.Count > 0)
+            {
+                TouchCollection state = TouchInput.newTouchState;// TouchPanel.GetState();
+                x = (double)state[0].Position.X;
+                y = (double)state[0].Position.Y;
+            }
             return Vector2.Divide(new Vector2((float)x, (float)y), Game1.Instance.Screen.Scale);
         }
     }

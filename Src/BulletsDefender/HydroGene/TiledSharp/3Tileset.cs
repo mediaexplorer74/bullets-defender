@@ -7,7 +7,7 @@
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxTilesetTile

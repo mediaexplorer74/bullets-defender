@@ -7,7 +7,7 @@
 using System;
 using System.Globalization;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxObjectPoint

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-#nullable disable
+
 namespace HydroGene
 {
     public class Screen
@@ -17,7 +17,7 @@ namespace HydroGene
         public SamplerState SamplerState = SamplerState.PointClamp;
         public Vector2 Offset = Vector2.Zero;
         public Vector2 OffsetAdd = Vector2.Zero;
-        private float scale = 1f;
+        private float scale = 0.8f;//0.8 - for L640; 1.75f; - for L950
         private float OrigScale = 1f;
         public Rectangle DrawRect;
         public Effect Effect;
@@ -46,7 +46,7 @@ namespace HydroGene
             this.DrawRect.Width = this.viewport.Width =
                       (int)((double)this.screenRect.Width * (double)scale);
             this.DrawRect.Height = this.viewport.Height =
-                      (int)((double)this.screenRect.Height * (double)scale);
+                      (int)((double)this.screenRect.Height * (double)scale * 2);
             this.SetWindowSize(this.DrawRect.Width, this.DrawRect.Height);
         }
 
@@ -74,7 +74,7 @@ namespace HydroGene
             this.DrawRect.Width = this.viewport.Width =
                       (int)((double)this.screenRect.Width * (double)scale);
             this.DrawRect.Height = this.viewport.Height =
-                      (int)((double)this.screenRect.Height * (double)scale);
+                      (int)((double)this.screenRect.Height * (double)scale * 2);
             if (this.IsFullscreen)
             {
                 this.Scale = Math.Min((float)this.GraphicsDevice.DisplayMode.Width
@@ -181,7 +181,7 @@ namespace HydroGene
                             (int)((double)this.screenRect.Width * (double)this.scale);
 
                 this.DrawRect.Height = this.viewport.Height =
-                            (int)((double)this.screenRect.Height * (double)this.scale);
+                            (int)((double)this.screenRect.Height * (double)this.scale * 2);
 
                 if (this.IsFullscreen)
                     this.HandleFullscreenViewport();
@@ -195,7 +195,7 @@ namespace HydroGene
             this.Graphics.IsFullScreen = false;
             this.Graphics.PreferredBackBufferWidth = width;
             this.Graphics.PreferredBackBufferHeight = height;
-            this.Graphics.ApplyChanges();
+            //this.Graphics.ApplyChanges();
             this.viewport.Width = width;
             this.viewport.Height = this.ScaledHeight;
             this.viewport.X = 0;
@@ -247,7 +247,7 @@ namespace HydroGene
             this.DrawRect.Width = this.viewport.Width = (int)((double)this.screenRect.Width
                       * (double)this.scale);
             this.DrawRect.Height = this.viewport.Height = (int)((double)this.screenRect.Height
-                      * (double)this.scale);
+                      * (double)this.scale * 2);
             this.SetWindowSize(this.ScaledWidth, this.ScaledHeight);
         }
 
@@ -268,7 +268,7 @@ namespace HydroGene
         {
             get
             {
-                return (int)((double)this.height * (double)this.scale);
+                return (int)((double)this.height * (double)this.scale * 2);
             }
         }
 

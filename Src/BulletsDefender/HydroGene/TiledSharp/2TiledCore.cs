@@ -8,10 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
-    [Serializable]
+    //[Serializable]
     public class PropertyDict : Dictionary<string, string>
     {
         public PropertyDict(XContainer xmlProp)

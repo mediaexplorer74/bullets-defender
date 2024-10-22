@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class Dialogue : Text

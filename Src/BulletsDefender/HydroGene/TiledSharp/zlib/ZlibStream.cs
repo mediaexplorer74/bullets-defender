@@ -7,7 +7,7 @@
 using System;
 using System.IO;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     public class ZlibStream : Stream

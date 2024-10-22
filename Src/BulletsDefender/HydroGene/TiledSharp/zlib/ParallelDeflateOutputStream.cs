@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     public class ParallelDeflateOutputStream : Stream

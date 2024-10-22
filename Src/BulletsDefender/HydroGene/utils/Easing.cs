@@ -6,7 +6,7 @@
 
 using System;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class Easing

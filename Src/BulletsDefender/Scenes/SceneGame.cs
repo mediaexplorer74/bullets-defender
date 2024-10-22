@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class SceneGame : Scene

@@ -295,10 +295,7 @@
       <Version>6.0.8</Version>
     </PackageReference>
     <PackageReference Include="MonoGame.Framework.WindowsUniversal">
-      <Version>3.7.1.189</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
+      <Version>3.8.0.1641</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime">
       <Version>4.3.1</Version>

@@ -6,7 +6,7 @@
 
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxTileOffset

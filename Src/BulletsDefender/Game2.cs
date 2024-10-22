@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-#nullable disable
+
 namespace Bullets_Defender
 {
     public class Game2 : Game

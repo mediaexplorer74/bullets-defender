@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxObjectGroup : ITmxElement

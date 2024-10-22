@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Text;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     public class GZipStream : Stream

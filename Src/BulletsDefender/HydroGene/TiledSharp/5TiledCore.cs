@@ -9,7 +9,7 @@ using System;
 using System.IO;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxBase64Data

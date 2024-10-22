@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     [Guid("ebc25cf6-9120-4283-b972-0e5520d0000E")]

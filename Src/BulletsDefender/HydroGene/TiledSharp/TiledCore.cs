@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
 
-#nullable disable
+
 namespace TiledSharp
 {
     public class TmxDocument

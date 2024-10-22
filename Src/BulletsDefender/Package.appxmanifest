@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" IgnorableNamespaces="uap mp iot">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" IgnorableNamespaces="uap mp iot">
   <Identity Name="ME.BulletsDefenderV1" Publisher="CN=Admin" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="5e063433-af2a-4105-4a83-eb18c64e4424" PhonePublisherId="50000045-6561-4035-3033-200280350424" />
   <Properties>
@@ -21,15 +21,13 @@
         </uap:DefaultTile>
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="portrait" />
-          <uap:Rotation Preference="landscape" />
-          <uap:Rotation Preference="landscapeFlipped" />
         </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
-    <uap:Capability Name="removableStorage"/>
-    <iot:Capability Name="lowLevelDevices"/>
+    <uap:Capability Name="removableStorage" />
+    <iot:Capability Name="lowLevelDevices" />
   </Capabilities>
 </Package>

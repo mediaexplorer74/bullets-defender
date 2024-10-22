@@ -3,7 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-#nullable disable
+
 namespace HydroGene
 {
     internal class MouseInput

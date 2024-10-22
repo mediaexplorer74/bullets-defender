@@ -6,7 +6,7 @@
 
 using System;
 
-#nullable disable
+
 namespace Ionic.Zlib
 {
     internal sealed class Tree
