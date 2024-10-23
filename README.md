@@ -1,4 +1,4 @@
-## Bullets-Defender v1.0.0 (alpha) - uwp branch
+## Bullets-Defender v1.0.1 (alpha) - uwp branch
 ![](Images/logo.png)
 
 My micro-RnD of Bullets-Defender (Fast and ultra dynamic action game when you need to destroy every squares and protect yours)) arcade/shooter game :)
@@ -17,11 +17,13 @@ And second (goal): add some "virtual pad" =)
 
 
 ## My 2 cents (status)
-- Project tuned on(to) tweaked Monigame.Framwork (and "firm" v3.7.xx.xx)
-- Some project research and minimal "re-dev" (virtual gamepad, etc.)))
+
 - W10M UWP adaptation ready! :)
-- VS 2017 (IDE) compatibility for best W10M debug process =)
+- Project "upgraded" to "firm" (native) Monigame.Framwork 3.8.0.1641 (for app size reducing)
+- I did additional project research and minimal "refactoring" 
+- VS 2017 (IDE) compatibility added for best W10M debug process =)
 - Min. W10M build: 10240 (hello, Astoria!)
+- Both mouse & touchscreen supported at now!
 
 ## Bullets Defender Explanation
 Use your slingshot to burst the maximum number of blocks that want to destroy yours! The more you pull on the rope, the higher the projectile will go. The game ends if you no longer have a small white square! So try to make the best score :) 
